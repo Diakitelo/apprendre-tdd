@@ -6,9 +6,11 @@ const client = axios.create({
 });
 
 const api = {
-  async loadRestaurants() {
-    const response = await client.get('/restaurants');
-    return response.data;
+  loadRestaurants() {
+    return client.get('/restaurants').then(response => response.data);
+  },
+  createRestaurant(name) {
+    return client.post('/restaurants', {name}).then(response => response.data);
   },
 };
 
